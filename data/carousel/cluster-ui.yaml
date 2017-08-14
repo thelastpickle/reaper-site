@@ -1,0 +1,9 @@
+weight: 3
+title: "Cluster Health View"
+description: >
+  <ul class="list-style-none">
+    <li>Simple web based UI</li>
+    <li>Full and incremental support</li>
+    <li>Supports all Cassandra versions</li>
+  </ul>
+image: "img/carousel/repairs.png"
