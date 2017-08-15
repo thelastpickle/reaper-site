@@ -29,3 +29,7 @@ googleAnalytics = ""
 
 [params.carousel]
     enable = true
+
+
+[params.features]
+    enable = true
