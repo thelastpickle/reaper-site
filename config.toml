@@ -4,6 +4,7 @@ title = "Reaper: Easy Repair Management for Apache Cassandra"
 theme = "hugo-universal-theme"
 
 googleAnalytics = ""
+publishDir = "docs"
 
 
 [menu]
