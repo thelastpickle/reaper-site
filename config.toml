@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Reaper: Easy Repair Management for Apache Cassandra"
 theme = "hugo-universal-theme"
 
-googleAnalytics = ""
+googleAnalytics = "UA-104925477-1"
 publishDir = "docs"
 
 
