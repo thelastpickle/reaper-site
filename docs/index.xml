@@ -42,7 +42,8 @@ docker-compose -f docker-build/docker-compose.yml build \ &amp;amp;&amp;amp; doc
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://cassandra-reaper.io/faq/</guid>
-      <description> Frequently Asked Questions </description>
+      <description>Frequently Asked Questions Why use Reaper instead of noddetool + cron? While it&amp;rsquo;s possible to set up crontab to call nodetool, it requires staggering the crons to ensure overlap is kept to a minimum. Reaper is able to intelligently schedule repairs to avoid putting too much load on the cluster, avoiding impacting performance. Reaper also offers a simple UI to schedule repairs as granularly as needed.
+Do I need to do repairs if I&amp;rsquo;m not deleting data?</description>
     </item>
     
     <item>
