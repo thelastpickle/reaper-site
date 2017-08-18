@@ -3,33 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/docs/</loc>
+    <loc>http://cassandra-reaper.io/docs/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/download/</loc>
+    <loc>http://cassandra-reaper.io/download/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/faq/</loc>
+    <loc>http://cassandra-reaper.io/faq/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/quickstart/</loc>
+    <loc>http://cassandra-reaper.io/quickstart/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://cassandra-reaper.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>http://cassandra-reaper.io/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://cassandra-reaper.io/tags/</loc>
     <priority>0</priority>
   </url>
   
