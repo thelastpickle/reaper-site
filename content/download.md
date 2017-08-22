@@ -1,8 +1,14 @@
 # Downloads and Installation
 
-Reaper can be downloaded a number of ways.  DEB, RPM, and Docker images, and building from source are supported.
+The current recommended version is 0.6.2.
 
-## Packages
+* [Deb Package](https://github.com/thelastpickle/cassandra-reaper/releases/download/0.6.2/reaper_0.6.2_amd64.deb)
+* [RPM](https://github.com/thelastpickle/cassandra-reaper/releases/download/0.6.2/reaper-0.6.2-1.x86_64.rpm)
+* [Tarball](https://github.com/thelastpickle/cassandra-reaper/releases/download/0.6.2/cassandra-reaper-0.6.2-release.tar.gz)
+
+For a docker image, please see the Docker section.
+
+## Building Packages
 
 Debian and RPM packages can be built from this project using Make, for example:
 
