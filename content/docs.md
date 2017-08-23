@@ -111,6 +111,8 @@ cassandra:
   ssl:
     type: jdk
 ```
+
+The Apache Cassandra backend is the only one that allows running several Reaper instances at once. This provides high availability and allows to repair multi DC clusters (see the **Multi-DC** section below).
     
 
 ### Other Configuration settings
@@ -199,22 +201,34 @@ If enabled, adding a new cluster will automatically setup a schedule repair
 for each keyspace. Cluster keyspaces are monitored based on a configurable frequency,
 so that adding or removing a keyspace will result in adding / removing the corresponding scheduled repairs.
 
+`repairManagerSchedulingIntervalSeconds`:  
 
+Controls the pace at which the Repair Manager will schedule processing of the next segment. Reducing this value from 30s (default) to a lower value can speed up fast repairs by orders of magnitude.
+ 
+`jmxConnectionTimeoutInSeconds`:  
+
+Controls the timeout for establishing JMX connections. The value should be low enough to avoid stalling simple operations in multi region clusters, but high enough to allow connections under normal conditions.  
+The default is set to 5 seconds.
+  
 Notice that in the *server* section of the configuration, if you want to bind the service
 to all interfaces, use value "0.0.0.0", or just leave the *bindHost* line away completely.
-Using "*" as bind value won't work.
+Using "*" as bind value won't work.  
 
 
 ## Multi-DC 
 
-For security reasons, it is possible that Reaper will be able to access only a single DC nodes through JMX.
-The `allowUnreachableNodes` parameter in `cassandra-reaper.yaml` must then be set to true in order for Reaper to control the repair process through the reachable nodes only.
-Limitations of this setup are:  
- 
-* All keyspaces must be replicated on the reachable DC using NetworkTopologyStrategy
-* Reaper won't be able to check the unreachable DC nodes for pending compactions or running repairs, which disables repair overload prevention
+For security reasons, it is possible that Reaper will be able to access only a single DC nodes through JMX (multi region clusters for example).
+In the case where the JMX port is accessible (with or without authentication) from the running Reaper instance only to the nodes in the current DC, it is possible to have a multiple instances of Reaper running in different DCs.
 
-Leaving *allowUnreachableNodes* to false will prevent all repair sessions once a single node from the cluster is unreachable
+This setup works **with Apache Cassandra as a backend only**. It is unsuitable for memory, H2 and Postgres.
+
+Reaper instances will rely on lightweight transactions to get leadership on segments before processing them.
+Reaper checks the number of pending compactions and actively running repairs on all replicas before processing a segment. The `datacenterAvailability` setting in the yaml file controls the behavior for metrics collection :  
+
+* `datacenterAvailability: ALL` requires direct JMX access to all nodes across all datacenters.
+* `datacenterAvailability: LOCAL` requires jmx access to all nodes in the datacenter local to reaper. If Reaper instances exist in remote datacenters, metrics can be collected asynchronously through the Cassandra storage (not mandatory).
+* `datacenterAvailability: EACH` means each datacenter requires at minimum one reaper instance which has jmx access to all nodes within that datacenter. Metrics from nodes in remote datacenters must be collected through the Cassandra storage backend. If all metrics aren't available, the segment will be postponed for later processing.
+
 
 ## Rest API
 
